@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         {/* this is above the main page.tsx */}
         {/* so thsi is where we put the chatbot component to be always visible */}
-        <h1>let its chatbot </h1>
+        {/* <h1>let its chatbot </h1> */}
         <Chat/>
         {children}
       </body>
