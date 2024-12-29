@@ -87,7 +87,7 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
     <div {...props} className={cn('border-t border-zinc-300', className)}>
       <div className='relative mt-4 flex-1 overflow-hidden rounded-lg border-none outline-none'>
         <TextareaAutosize
-          ref={textareaRef}
+          // ref={textareaRef}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
               e.preventDefault()
@@ -101,9 +101,10 @@ const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
               sendMessage(message)
             }
           }}
+        
           rows={2}
           maxRows={4}
-          value={input}
+           value={input}
           autoFocus
           disabled={isPending}
           onChange={(e) => setInput(e.target.value)}
