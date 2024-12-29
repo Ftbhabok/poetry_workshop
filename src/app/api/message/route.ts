@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     }
   })
 
-  outboundMessages.unshift({
+  outboundMessages.unshift({ 
     role: 'system',
     content: chatbotPrompt,
   })
