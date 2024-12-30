@@ -1,7 +1,9 @@
 
 
+
 export default function Home() {
- return (
-  <main>website content</main>
- )
+ 
+  return (
+   <div className=''>site content</div>
+  )
 }
