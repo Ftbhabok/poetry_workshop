@@ -1,3 +1,4 @@
+// app/layout.tsx
 import Chat from '@/components/Chat'
 import './globals.css'
 import { Inter } from 'next/font/google'
@@ -17,12 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <Providers>
-        <body className={inter.className}>
-          <Chat />
+      <body className={inter.className}>
+        <Providers>
           {children}
-        </body>
-      </Providers>
+          <Chat />
+        </Providers>
+      </body>
     </html>
   )
 }

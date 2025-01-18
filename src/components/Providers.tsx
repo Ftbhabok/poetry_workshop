@@ -1,14 +1,15 @@
+// components/Providers.tsx
 'use client'
 
 import { MessagesProvider } from '@/context/messages'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { FC, ReactNode } from 'react'
 
-interface LayoutProps {
+interface ProvidersProps {
   children: ReactNode
 }
 
-const Layout: FC<LayoutProps> = ({ children }) => {
+const Providers: FC<ProvidersProps> = ({ children }) => {
   const queryClient = new QueryClient()
 
   return (
@@ -18,4 +19,4 @@ const Layout: FC<LayoutProps> = ({ children }) => {
   )
 }
 
-export default Layout
+export default Providers

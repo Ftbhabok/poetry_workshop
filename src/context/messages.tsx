@@ -1,22 +1,18 @@
+'use client'
+
 import { createContext, useState } from 'react'
-import { nanoid } from 'nanoid'
 import { Message } from '@/lib/validators/message'
 
-const defaultValue = [
-  {
-    id: nanoid(),
-    text: 'Hello, how can I help you?',
-    isUserMessage: false,
-  },
-]
-export const MessagesContext = createContext<{
+interface MessagesContextType {
   messages: Message[]
   isMessageUpdating: boolean
   addMessage: (message: Message) => void
   removeMessage: (id: string) => void
   updateMessage: (id: string, updateFn: (prevText: string) => string) => void
   setIsMessageUpdating: (isUpdating: boolean) => void
-}>({
+}
+
+export const MessagesContext = createContext<MessagesContextType>({
   messages: [],
   isMessageUpdating: false,
   addMessage: () => {},
@@ -26,23 +22,20 @@ export const MessagesContext = createContext<{
 })
 
 export function MessagesProvider({ children }: { children: React.ReactNode }) {
-  const [messages, setMessages] = useState(defaultValue)
+  const [messages, setMessages] = useState<Message[]>([])
   const [isMessageUpdating, setIsMessageUpdating] = useState<boolean>(false)
 
   const addMessage = (message: Message) => {
-    setMessages((prev) => [...prev, message])
+    setMessages((prevMessages) => [...prevMessages, message])
   }
 
   const removeMessage = (id: string) => {
-    setMessages((prev) => prev.filter((message) => message.id !== id))
+    setMessages((prevMessages) => prevMessages.filter((message) => message.id !== id))
   }
 
-  const updateMessage = (
-    id: string,
-    updateFn: (prevText: string) => string
-  ) => {
-    setMessages((prev) =>
-      prev.map((message) => {
+  const updateMessage = (id: string, updateFn: (prevText: string) => string) => {
+    setMessages((prevMessages) => 
+      prevMessages.map((message) => {
         if (message.id === id) {
           return { ...message, text: updateFn(message.text) }
         }
@@ -60,7 +53,8 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
         removeMessage,
         updateMessage,
         setIsMessageUpdating,
-      }}>
+      }}
+    >
       {children}
     </MessagesContext.Provider>
   )
